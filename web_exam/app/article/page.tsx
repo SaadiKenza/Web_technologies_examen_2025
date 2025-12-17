@@ -1,5 +1,5 @@
-import { getArticles } from "./editer/action";
-import ArticlesEntry from "./Components/ArticlesEntry";
+import { getArticles } from "../editer/action";
+import ArticlesEntry from "../Components/ArticlesEntry";
 
 export default async function ArticlePage() {
       const articles = await getArticles();
@@ -7,7 +7,7 @@ export default async function ArticlePage() {
   return (
     <div className="container mx-auto max-w-2xl">
       <h1 className="text-center text-3xl my-8 text-sky-900 font-bold">
-        Liste générale des articles
+        Liste des articles
       </h1>
 
       <div className="space-y-4">
@@ -18,16 +18,17 @@ export default async function ArticlePage() {
             >
               <ul className="list-disc pl-5 space-y-2">
                 <li>
-                  <span className="font-semibold text-slate-700">Lien web : </span>
-                  <a 
-                      href={article.link}           // L'adresse où aller
-                      target="_blank"               // Ouvre dans un nouvel onglet (très conseillé)
-                      rel="noopener noreferrer"     // Sécurité obligatoire quand on utilise target="_blank"
-                      className="text-sky-600 hover:text-sky-800 hover:underline break-all" // Style bleu + gestion des liens trop longs
-                  >
-                      {article.link}
-                </a>
+                  <span className="font-semibold text-slate-700">Date de publication : </span>
+                  {article.date}
                 </li>
+                <li>
+                  <span className="font-semibold text-slate-700">Nom de l'auteur: </span>
+                  {article.auteur}
+                </li>
+                <li>
+                  <span className="font-semibold text-slate-700">contenu de l'article : </span>
+                  {article.description}
+                </li>                
               </ul>
             </ArticlesEntry>
           </div>

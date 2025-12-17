@@ -11,13 +11,13 @@ const Header: React.FC = () => {
       <ul className="navbar-list">
         <ul>
           <li>
-            <a href="/Editer">Editer</a>
+            <a href="/editer">Editer</a>
           </li>        
           <li>
-            <a href="/Ajout">Ajout</a>
+            <a href="/ajout">Ajout</a>
           </li>
           <li>
-            <a href="/Article_info">Article info</a>
+            <a href="/article">Article info</a>
           </li>
           <li>
             <a href="/">Accueil</a>

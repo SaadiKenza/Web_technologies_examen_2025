@@ -21,8 +21,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {     //permet d'avoir un titre d'onglet
-  title: "Boutique",
-  description: "Boutique de potions",
+  title: "Articles",
+  description: "Articles",
 };
 
 export default function RootLayout({
