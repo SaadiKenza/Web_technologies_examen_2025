@@ -9,15 +9,12 @@ const Header: React.FC = () => {
   return (
     <div className="header-container">
       <ul className="navbar-list">
-        <ul>
+        <ul>       
           <li>
-            <a href="/editer">Editer</a>
-          </li>        
-          <li>
-            <a href="/ajout">Ajout</a>
+            <a href="/visuel">Bookings</a>
           </li>
           <li>
-            <a href="/article">Article info</a>
+            <a href="/editer">Booking id</a>
           </li>
           <li>
             <a href="/">Accueil</a>

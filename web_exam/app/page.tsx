@@ -1,42 +1,27 @@
-import { getArticles } from "./editer/action";
-import ArticlesEntry from "./Components/ArticlesEntry";
+import ReservationsEntry from "./Components/ReservationsEntry";
+import { getReservations, createReservation} from "./ajout/action";
 
-export default async function ArticlePage() {
-      const articles = await getArticles();
+export default async function Reservations() {
+    const reservation = await getReservations();
 
-  return (
-    <div className="container mx-auto max-w-2xl">
-      <h1 className="text-center text-3xl my-8 text-sky-900 font-bold">
-        Liste générale des articles
-      </h1>
+    return(
+        <>
+            <h1 className="text-center text-3xl my-8">Réservation</h1> 
 
-      <div className="space-y-4">
-        {articles.map((article) => (
-          <div key={article.id} className="relative group">
-            <ArticlesEntry 
-                title={article.title} 
-            >
-              <ul className="list-disc pl-5 space-y-2">
-                <li>
-                  <span className="font-semibold text-slate-700">Lien web : </span>
-                  <a 
-                      href={article.link}           // L'adresse où aller
-                      target="_blank"               // Ouvre dans un nouvel onglet (très conseillé)
-                      rel="noopener noreferrer"     // Sécurité obligatoire quand on utilise target="_blank"
-                      className="text-sky-600 hover:text-sky-800 hover:underline break-all" // Style bleu + gestion des liens trop longs
-                  >
-                      {article.link}
-                </a>
-                </li>
-              </ul>
-            </ArticlesEntry>
-          </div>
-        ))}
+            <div className="bg-slate-100 p-6 border-2 border-dashed border-slate-300 rounded-xl mx-4 mb-8">
+                <h2 className="text-xl font-bold text-slate-700 mb-4">Ajouter une nouvelle réservation</h2>
+                <form action={createReservation} className="flex flex-col gap-3">
+                    <input name="nom" type="text" placeholder="nom" className="p-2 rounded border border-slate-300" required />
+                    <input type="number" name="numeroGSM" placeholder="numéro de téléphone" className="p-2 rounded border border-slate-300" required />
+                    <input name="nbpersonnes" type="number" placeholder="nb de personnes" className="p-2 rounded border border-slate-300" required />
+                    <input name="heure" type="text" placeholder="heure de réservation" className="p-2 rounded border border-slate-300" required />
+                    <button type="submit" className="bg-sky-800 text-white font-bold py-2 px-4 rounded hover:bg-sky-700 transition mt-2 cursor-pointer">
+                        Ajouter la nouvel réservation
+                    </button>
+                </form>
+            </div>
 
-        {articles.length === 0 && (
-            <p className="text-center text-slate-500 italic">Aucun article sur le site...</p>
-        )}
-      </div>
-    </div>
-  );
+
+        </>
+    )
 }

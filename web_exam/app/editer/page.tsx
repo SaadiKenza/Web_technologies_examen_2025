@@ -1,19 +1,19 @@
-import ArticlesEntry from "../Components/ArticlesEntry";
-import { getArticles } from "./action";
-import Articlemodif from "../Components/Modifs";
+import ReservationsEntry from "../Components/ReservationsEntry";
+import { getReservations } from "./action";
+import Reservationmodif from "../Components/Modifs";
 
-export default async function Aritcles() {
-    const articles = await getArticles();
+export default async function Reservations() {
+    const reservations = await getReservations();
 
     return(
         <>
-            <h1 className="text-center text-3xl my-8">Modifications des articles</h1> 
+            <h1 className="text-center text-3xl my-8">Modifications des réservations</h1> 
 
 
-            {/* --- LISTE DES article --- */}
+            {/* --- LISTE DES reservation --- */}
             <div className="space-y-4">
-                {articles.map((article) => (
-                    <Articlemodif key={article.id} article={article} />
+                {reservations.map((reservation) => (
+                    <Reservationmodif key={reservation.id} reservation={reservation} />
                 ))}
             </div>
         </>

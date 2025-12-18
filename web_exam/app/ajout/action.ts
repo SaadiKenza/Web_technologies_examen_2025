@@ -1,55 +1,51 @@
 'use server'
 
 import { db } from '@/db'
-import { ArticlesTable } from '@/db/schema' 
+import { ReservationsTable } from '@/db/schema' 
 import { eq } from 'drizzle-orm'
 import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 
-export async function getArticles() {
-  return await db.select().from(ArticlesTable);
+export async function getReservations() {
+  return await db.select().from(ReservationsTable);
 }
 
-export async function createArticle(formData: FormData) {
-  const title = formData.get('title');
-  const date = formData.get('date');
-  const description = formData.get('description');
-  const link = formData.get('link');
-  const auteur = formData.get('auteur');
+export async function createReservation(formData: FormData) {
+  const nom = formData.get('nom');
+  const numeroGSM = formData.get('numeroGSM');
+  const nbpersonnes = formData.get('nbpersonnes');
+  const heure = formData.get('heure');
 
-  if (!title || !date || !description || !link || !auteur) return;
+  if (!nom || !numeroGSM || !nbpersonnes || !heure) return;
 
-  await db.insert(ArticlesTable).values({
-    title: String(title),
-    date: String(date),
-    description: String(description),
-    link: String(link),
-    auteur: String(auteur),
+  await db.insert(ReservationsTable).values({
+    nom: String(nom),
+    numeroGSM: String(numeroGSM),
+    nbpersonnes: String(nbpersonnes),
+    heure: String(heure),
   });
   redirect((await headers()).get('referer')??'/')
 }
 
 // permet de modifier notre case déjà créer
-export async function editArticle(formData: FormData) {
+export async function editReservation(formData: FormData) {
   const id = formData.get('id');
-  const title = formData.get('title');
-  const date = formData.get('date');
-  const description = formData.get('description');
-  const link = formData.get('link');
-  const auteur = formData.get('auteur');
+  const nom = formData.get('nom');
+  const numeroGSM = formData.get('numeroGSM');
+  const nbpersonnes = formData.get('nbpersonnes');
+  const heure = formData.get('heure');
 
-  if (!id || !title || !date || !description || !link || !auteur) return;
+  if (!id || !nom || !numeroGSM || !nbpersonnes || !heure) return;
 
   await db
-    .update(ArticlesTable)
+    .update(ReservationsTable)
     .set({
-      title: String(title),
-      date: String(date),
-      description: String(description),
-      link: String(link),
-      auteur: String(auteur),
+      nom: String(nom),
+      numeroGSM: String(numeroGSM),
+      nbpersonnes: String(nbpersonnes),
+      heure: String(heure),
     })
-    .where(eq(ArticlesTable.id, String(id)));
+    .where(eq(ReservationsTable.id, String(id)));
 
   redirect((await headers()).get('referer') ?? '/');
 }

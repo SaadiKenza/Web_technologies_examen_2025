@@ -2,21 +2,20 @@
 "use client"; // Indispensable pour utiliser useState
 
 import { useState } from "react";
-import { editArticle, deleteArticle } from "@/app/editer/action"; 
-import ArticlesEntry from "./ArticlesEntry";
+import { editReservation, deleteReservation } from "@/app/editer/action"; 
+import ReservationsEntry from "./ReservationsEntry";
 
-type ArticleRowProps = {
-  article: {
+type ReservationRowProps = {
+  reservation: {
     id: string;
-    title: string;
-    date: string;
-    link: string;
-    description: string;
-    auteur: string;
+    nom: string;
+    numeroGSM: string;
+    nbpersonnes: string;
+    heure: string;
   };
 };
 
-export default function Articlemodif({ article }: ArticleRowProps) {
+export default function Reservationmodif({ reservation }: ReservationRowProps) {
   const [isEditing, setIsEditing] = useState(false);
 
 
@@ -25,55 +24,46 @@ export default function Articlemodif({ article }: ArticleRowProps) {
       <div className="bg-slate-50 p-4 border-2 border-sky-200 rounded-xl mx-4 my-8">
         <form
           action={async (formData) => {
-            await editArticle(formData);
+            await editReservation(formData);
             setIsEditing(false);
           }}
           className="flex flex-col gap-3"
         >
-          <input type="hidden" name="id" value={article.id} />
+          <input type="hidden" name="id" value={reservation.id} />
 
           <div className="flex gap-2">
             <input
-              name="title"
-              defaultValue={article.title}
+              name="nom"
+              defaultValue={reservation.nom}
               className="flex-1 p-2 rounded border border-slate-300"
-              placeholder="Titre de l'article"
+              placeholder="nom"
               required
             />
             <input
-              name="auteur"
-              defaultValue={article.auteur}
+              name="heure"
+              defaultValue={reservation.heure}
               className="flex-1 p-2 rounded border border-slate-300"
-              placeholder="auteur"
+              placeholder="heure de réservation"
               required
             />
           </div>
 
           <input
-            type="date"
-            name="date"
-            defaultValue={article.date}
+            type="number"
+            name="numeroGSM"
+            defaultValue={reservation.numeroGSM}
             className="p-2 rounded border border-slate-300"
-            placeholder="Date de publication"
+            placeholder="numéro de téléphone"
             required
           />
           <input
-            name="description"
-            defaultValue={article.description}
+            type="number"
+            name="nbpersonnes"
+            defaultValue={reservation.nbpersonnes}
             className="p-2 rounded border border-slate-300"
-            placeholder="Contenu de l'article"
+            placeholder="nb de personnes"
             required
           />
-          <input
-              type="url"  
-              name="link"
-              defaultValue={article.link}
-              className="w-full p-2 pl-10 rounded border border-slate-300 text-blue-600 underline"
-              placeholder="https://monsite.com"
-              pattern="https://.*" 
-              title="Le lien doit commencer par https://"
-              required
-            />
 
           <div className="flex justify-end gap-2">
             <button
@@ -98,33 +88,22 @@ export default function Articlemodif({ article }: ArticleRowProps) {
   // SI ON EST EN MODE AFFICHAGE : On affiche la carte normale
   return (
     <div className="relative group">
-      <ArticlesEntry
-        title={article.title}
+      <ReservationsEntry
+        nom={reservation.nom}
       >
         <div className="flex justify-between items-start">
           <ul className="list-disc pl-5 space-y-2">
             <li>
-              <span className="font-semibold text-slate-700">Auteur : </span>
-              {article.auteur}
+              <span className="font-semibold text-slate-700">heure : </span>
+              {reservation.heure}
             </li>
             <li>
-              <span className="font-semibold text-slate-700">Date de publication : </span>
-              {article.date}
+              <span className="font-semibold text-slate-700">Numéro de téléphone : </span>
+              {reservation.numeroGSM}
             </li>
             <li>
-              <span className="font-semibold text-slate-700">Contenu de l'article : </span>
-              {article.description}
-            </li>
-            <li>
-              <span className="font-semibold text-slate-700">Lien de l'article : </span>
-              <a 
-                    href={article.link}           // L'adresse où aller
-                    target="_blank"               // Ouvre dans un nouvel onglet (très conseillé)
-                    rel="noopener noreferrer"     // Sécurité obligatoire quand on utilise target="_blank"
-                    className="text-sky-600 hover:text-sky-800 hover:underline break-all" // Style bleu + gestion des liens trop longs
-                >
-                    {article.link}
-                </a>
+              <span className="font-semibold text-slate-700">Nombre de personnes: </span>
+              {reservation.nbpersonnes}
             </li>
           </ul>
 
@@ -138,7 +117,7 @@ export default function Articlemodif({ article }: ArticleRowProps) {
             </button>
 
             {/* BOUTON SUPPRIMER */}
-            <form action={deleteArticle.bind(null, article.id)}>
+            <form action={deleteReservation.bind(null, reservation.id)}>
               <button
                 type="submit"
                 className="text-red-400 hover:text-red-700 text-sm font-bold border border-red-200 hover:bg-red-50 rounded px-2 py-1 transition w-full"
@@ -148,7 +127,7 @@ export default function Articlemodif({ article }: ArticleRowProps) {
             </form>
           </div>
         </div>
-      </ArticlesEntry>
+      </ReservationsEntry>
     </div>
   );
 }
