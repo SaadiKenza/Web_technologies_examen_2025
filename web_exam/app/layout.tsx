@@ -21,8 +21,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {     //permet d'avoir un titre d'onglet
-  title: "Articles",
-  description: "Articles",
+  title: "Réservation",
+  description: "Réservation dans un restaurant",
 };
 
 export default function RootLayout({
