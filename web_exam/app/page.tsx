@@ -6,7 +6,7 @@ export default async function Reservations() {
 
     return(
         <>
-            <h1 className="text-center text-3xl my-8">Réservation</h1> 
+            <h1 className="text-center text-3xl my-8"> Ajout de réservation</h1> 
 
             <div className="bg-slate-100 p-6 border-2 border-dashed border-slate-300 rounded-xl mx-4 mb-8">
                 <h2 className="text-xl font-bold text-slate-700 mb-4">Ajouter une nouvelle réservation</h2>

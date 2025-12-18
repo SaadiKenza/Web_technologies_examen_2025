@@ -2,7 +2,7 @@
 "use client"; // Indispensable pour utiliser useState
 
 import { useState } from "react";
-import { editReservation, deleteReservation } from "@/app/editer/action"; 
+import { editReservation, deleteReservation } from "@/app/booking/id/action"; 
 import ReservationsEntry from "./ReservationsEntry";
 
 type ReservationRowProps = {

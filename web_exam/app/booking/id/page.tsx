@@ -1,6 +1,6 @@
-import ReservationsEntry from "../Components/ReservationsEntry";
-import { getReservations } from "./action";
-import Reservationmodif from "../Components/Modifs";
+import ReservationsEntry from "@/app/Components/ReservationsEntry";
+import { getReservations } from "@/app/booking/id/action";
+import Reservationmodif from "@/app/Components/Modifs";
 
 export default async function Reservations() {
     const reservations = await getReservations();

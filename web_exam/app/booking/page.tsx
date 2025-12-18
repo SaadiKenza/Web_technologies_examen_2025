@@ -1,4 +1,4 @@
-import { getReservations } from "../editer/action";
+import { getReservations } from "@/app/booking/id/action";
 import ReservationsEntry from "../Components/ReservationsEntry";
 
 export default async function ReservationPage() {
@@ -28,7 +28,20 @@ export default async function ReservationPage() {
                 <li>
                   <span className="font-semibold text-slate-700">Nb de personnes: </span>
                   {reservation.nbpersonnes}
-                </li>                
+                </li>
+                <li>
+
+                  <span className="font-semibold text-slate-700">Lien de Modification : </span>
+                  <a 
+                        href="http://localhost:3000/booking/id"           // L'adresse où aller
+                        target="_blank"               // Ouvre dans un nouvel onglet (très conseillé)
+                        rel="noopener noreferrer"     // Sécurité obligatoire quand on utilise target="_blank"
+                        className="text-sky-600 hover:text-sky-800 hover:underline break-all" // Style bleu + gestion des liens trop longs
+                    >
+                      http://localhost:3000/booking/id
+                    </a>
+                  
+                </li>                 
               </ul>
             </ReservationsEntry>
           </div>
